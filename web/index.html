@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ปักหมุดเมืองชายแดน — Border Cities Atlas (MVP)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c-6 0-10.5 4.6-10.5 10.4C5.5 20 16 30 16 30s10.5-10 10.5-17.6C26.5 6.6 22 2 16 2z" fill="currentColor"/><circle cx="16" cy="12.5" r="4.2" fill="var(--paper)"/></svg>
+    <div>
+      <h1>ปักหมุดเมืองชายแดน</h1>
+      <p>Border Cities Atlas · ต้นแบบแดชบอร์ดจากข้อมูลที่เข้าถึงได้วันนี้</p>
+    </div>
+  </div>
+  <nav class="lenses" role="tablist" aria-label="มุมมอง">
+    <button role="tab" data-lens="project" class="on">พื้นที่โครงการ</button>
+    <button role="tab" data-lens="trade">การค้าข้ามแดน</button>
+    <button role="tab" data-lens="knowledge">คลังความรู้ ศมส.</button>
+  </nav>
+  <div class="badge" title="สร้างเพื่อ Workshop 21 ต.ค. 2569 ที่ ศมส.">MVP v0.1 · 21 ต.ค. 69</div>
+</header>
+
+<main class="layout">
+  <section class="mapwrap">
+    <div id="map" aria-label="แผนที่เมืองชายแดน"></div>
+
+    <div class="map-ui top-left">
+      <div class="toggles" id="toggles"></div>
+      <div class="yearbox hidden" id="yearbox">
+        <div class="yearbox-head"><span>ปีข้อมูล</span><strong id="yearLabel">2025</strong></div>
+        <input type="range" id="year" min="2017" max="2026" step="1" value="2025" aria-label="เลือกปี">
+        <div class="ticks"><span>2017</span><span>2026*</span></div>
+      </div>
+    </div>
+
+    <div class="map-ui bottom-left" id="legend"></div>
+
+    <div class="map-ui top-right">
+      <button class="pinbtn" id="pinMode" aria-pressed="false" title="คลิกบนแผนที่เพื่อปักหมุดความเห็น (สำหรับกิจกรรมปักหมุดใน Workshop)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
+        <span>ปักหมุด Workshop</span>
+      </button>
+    </div>
+  </section>
+
+  <aside class="panel" id="panel" aria-live="polite"></aside>
+</main>
+
+<dialog id="pinDialog">
+  <form method="dialog" id="pinForm">
+    <h3>ปักหมุดใหม่</h3>
+    <p class="muted" id="pinWhere"></p>
+    <label>รอบ
+      <select name="round">
+        <option value="1">รอบ 1 — เมืองไหนมีข้อมูล/ประเด็นอะไร</option>
+        <option value="2">รอบ 2 — เวทีภูมิภาคที่ไหน เน้นเรื่องอะไร</option>
+      </select>
+    </label>
+    <label>ประเภท
+      <select name="kind">
+        <option value="data">มีข้อมูล/ต้นทุน</option>
+        <option value="issue">ประเด็นน่าสนใจ</option>
+        <option value="forum">เสนอจัดเวที</option>
+        <option value="media">ไอเดียสื่อ</option>
+      </select>
+    </label>
+    <label>ใคร (ทีม/ภาคี)
+      <input name="who" placeholder="เช่น ศมส. / ทีมพีไอ / ภาคเหนือ">
+    </label>
+    <label>บันทึก
+      <textarea name="note" rows="3" required placeholder="สั้น ๆ ว่ารู้อะไร หรืออยากเห็นอะไรที่นี่"></textarea>
+    </label>
+    <menu>
+      <button value="cancel" formnovalidate class="ghost">ยกเลิก</button>
+      <button value="ok" class="solid">ปักหมุด</button>
+    </menu>
+  </form>
+</dialog>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

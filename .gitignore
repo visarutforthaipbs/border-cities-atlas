@@ -1,0 +1,6 @@
+# large re-downloadable sources (see scripts/00_fetch_raw.sh)
+data/raw/
+# QA screenshots
+qa/
+__pycache__/
+.DS_Store
